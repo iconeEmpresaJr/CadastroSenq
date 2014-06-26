@@ -21,9 +21,10 @@
         VALUES ('$nomeCompleto', '$email', '$curso', '$instituicao' , '$cpf', '$tel',  
 					  '$senha')";
                                           
-        mysql_query($query, $conexao);
-        
-        echo "Seu cadastro foi realizado com sucesso!<br>Agradecemos a atenção.";
+        if(mysql_query($query, $conexao))
+                echo "Seu cadastro foi realizado com sucesso!<br>Agradecemos a atenção.";
+        else
+                echo "Não foi possível concluir seu cadastro.";
         
         //Encerrando conexão com o banco de dados
         mysql_close();
