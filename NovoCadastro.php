@@ -2,9 +2,9 @@
     <body>
         <?php
         
-        //Setando valores das variáveis
+        //Setando valores das variÃ¡veis
         
-        $nomeCompleto = $_POST ["nomeCompleto"];
+        $nome = $_POST ["nome"];
         $email = $_POST ["email"];
         $curso = $_POST ["curso"];
         $instituicao = $_POST ["instituicao"];
@@ -12,21 +12,20 @@
         $tel = $_POST ["telefone"];
         $senha = $_POST ["senha"];
         
-        // Estabelecendo conexão com o banco de dados        
+        // Estabelecendo conexÃ£o com o banco de dados        
         include 'connectDB.php';
         
         // Inserindo dados na tabela
-        $query = "INSERT INTO Participante (nomeCompleto, email, curso, instituicao, cpf, 
-                                                telefone, senha)
-        VALUES ('$nomeCompleto', '$email', '$curso', '$instituicao' , '$cpf', '$tel',  
-					  '$senha')";
+        $query = "INSERT INTO Participante(nomeCompleto,email,curso,senha,instituicao,cpf,tel) 
+
+	VALUES('$nome','$email','$curso', '$senha','$instituicao','$cpf','$tel')";
                                           
         if(mysql_query($query, $conexao))
-                echo "Seu cadastro foi realizado com sucesso!<br>Agradecemos a atenção.";
+                echo "Seu cadastro foi realizado com sucesso!<br>Agradecemos a atenÃ§Ã£o.";
         else
-                echo "Não foi possível concluir seu cadastro.";
+                echo "NÃ£o foi possÃ­vel concluir seu cadastro.";
         
-        //Encerrando conexão com o banco de dados
+        //Encerrando conexÃ£o com o banco de dados
         mysql_close();
         ?>
     </body>
