@@ -19,6 +19,7 @@ if(mysql_num_rows($query) > 0){
         $_SESSION['login'] = $user['email'];
         $_SESSION['senha'] = $user['senha'];
         $_SESSION['id'] = $user['id'];
+        $_SESSION['privilegio'] = $user['privilegio'];
     }
     header('location:home.php');
 }
@@ -26,7 +27,7 @@ if(mysql_num_rows($query) > 0){
 else{
     unset($_SESSION['login']);
     unset($_SESSION['senha']);
-    header('location:index.html');
+    header('location:index.php');
 }
 
 mysql_close();
