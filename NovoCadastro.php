@@ -19,8 +19,16 @@
         // Estabelecendo conexÃ£o com o banco de dados        
         include 'connectDB.php';
         
+        // Verifica se o email ja está cadastrado
+        $query = mysql_query("SELECT * FROM Participante WHERE email = '$email'");
+        if(mysql_num_rows($query) > 0){
+            mysql_close();
+            echo 'Não foi possível concluir a inscrição, o email submetido já foi cadastrado.';
+        }
+        
+        else{
         // Inserindo dados na tabela
-        $query = "INSERT INTO Participante(nomeCompleto,email,curso,senha,instituicao,cpf,tel,p1-1,p1-2,p2-1,p2-2) 
+        $query = "INSERT INTO Participante(nomeCompleto,email,curso,senha,instituicao,cpf,tel,escolha11,escolha12,escolha21,escolha22) 
 
 	VALUES('$nome','$email','$curso', '$senha','$instituicao','$cpf','$tel','$p11','$p12','$p21','$p22')";
                                           
@@ -31,6 +39,7 @@
         
         //Encerrando conexÃ£o com o banco de dados
         mysql_close();
+        }
         ?>
     </body>
 </html>

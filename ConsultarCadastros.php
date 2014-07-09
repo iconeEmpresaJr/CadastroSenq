@@ -1,15 +1,14 @@
+<?php 
+    session_start();
+    include 'checkSession.php';
+    include 'checkPrivilege.php';
+    ?>
 <html>
     <body>
         <a href="home.php"><button type="button" id="home">Home</button></a>
+        <a href="verPagos.php"><button type="button" id="pagos">Confirmados</button></a>
+        <a href="listaProgramacao.php"><button type="button" id="programacao">Programacoes</button></a>
         <?php
-        
-        session_start();
-        
-       /* Previne que a pagina seja acessada por alguém que não está logado */
-        include 'checkSession.php';
-        
-        // Redireciona caso o usuário não tenha o nível de privilégio necessário
-        include 'checkPrivilege.php';
         
         // Estabelecendo conexão com banco de dados
         include 'connectDB.php';
@@ -22,12 +21,14 @@
         while($user = mysql_fetch_array($query)) {
             ?>
                 <tr>
-                <td><?php echo $user['nomeCompleto']; ?></td>
-                <td><a href="excluirCadastro.php?id=<?php echo $user['id'] ?>">Excluir</a><td>
-                <td><a href="verCadastro.php?idParticipante=<?php echo $user['id'] ?>">Exibir</a><td>
+                    <td><a href="VerCadastro.php?id=<?php echo $user['id'] ?>"><?php echo $user['nomeCompleto']; ?></a></td>
+                <td><a href="confirmarPagamento.php?id=<?php echo $user['id'] ?>">
+                    <?php if($user['pagamento'] != 1)
+                        echo 'Confirmar'; ?>
+                    </a></td>
                 </tr>
             <?php
-        } //encerra o loop while
+        } //encerra o looping while
         mysql_close();
         ?>
         </table>
